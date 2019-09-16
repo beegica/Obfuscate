@@ -21,15 +21,28 @@ def Obfuscation(self, config):
         with UntilDone():
             KeyPress()
 
-        with Parallel():
-            Label(text=config.ENCODE_REMINDER, multiline=True,
-                  font_size=s(config.INST_FONT_SIZE), )
+        Wait(.3)
+
+        Label(text=config.ENCODE_REMINDER, multiline=True,
+              font_size=s(config.INST_FONT_SIZE), )
+        with UntilDone():
+            KeyPress()
+
+        Wait(1.0)
 
         with Loop(block.current[0]) as encode_trial:
             EncodeTrial(config, trial_dict=encode_trial.current)
 
         # Insert something 90 seconds long here
 
+
+
+        Label(text=config.TEST_REMINDER, multiline=True,
+              font_size=s(config.INST_FONT_SIZE), )
+        with UntilDone():
+            KeyPress()
+
+        Wait(1.0)
 
         with Loop(block.current[1]) as test_trial:
             TestTrial(config, trial_dict=test_trial.current)
@@ -49,7 +62,7 @@ if __name__ == "__main__":
     exp = Experiment()
 
     InputSubject(name="Obfuscation")
-
+    
     Obfuscation(config)
 
     Label(text="You are now finished with the experiment,\nLet your experimenter Know!",
