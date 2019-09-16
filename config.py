@@ -6,15 +6,21 @@ CONF_DICT = {k: str(20*i) for i, k in enumerate(KEYS)}
 STIM_HEIGHT = 300
 STIM_WIDTH = 200
 
-STIM_ENCODE_DUR = 3.0
+STIM_ENCODE_DUR = 4.0
 OLDNEW_RESP_DUR = 3.0
 CONF_CHOICE_VIEW = 1.0
 # CONF_RESP_DUR = 3.0
-ISI = 1.0
+ISI = .4
+ISI_JIT = .2
 
 CROSS_FONT_SIZE = 50
 FONT_SIZE = 35
 
+
+BLOCKS = ["OBS", "CLE"]
+RECE_TRIAL_LEN = 2
+PRIM_TRIAL_LEN = 2
+ENCODE_TRIAL_LEN = 18
 
 ENCODE_REMINDER = "In the following section, you just need to view the faces that are being shown to you on the screen. Please try to look at them for the full duration that they are on the screen.\n\nWhen you are ready press any key!"
 

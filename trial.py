@@ -13,7 +13,7 @@ def EncodeTrial(self, config, trial_dict):
                   height=s(config.STIM_HEIGHT),
                   width=s(config.STIM_WIDTH),
                   duration=config.STIM_ENCODE_DUR)
-            Wait(config.ISI)
+            Wait(config.ISI, jitter=config.ISI_JIT)
     Log(trial_dict,
         name="ENCODE")
 
