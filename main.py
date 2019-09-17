@@ -11,6 +11,13 @@ def Obfuscation(self, config):
     blocks = Func(gen_blocks, config).result
 
     Instructions(config)
+
+    Label(text="You have now finished the practice instructions.\n" +
+               "Press any key to continue to the main experiment.",
+          font_size=s(config.FONT_SIZE))
+    with UntilDone():
+        KeyPress()
+    
     Wait(config.ISI)
 
     with Loop(blocks) as block:
@@ -62,7 +69,7 @@ if __name__ == "__main__":
     exp = Experiment()
 
     InputSubject(name="Obfuscation")
-    
+
     Obfuscation(config)
 
     Label(text="You are now finished with the experiment,\nLet your experimenter Know!",
