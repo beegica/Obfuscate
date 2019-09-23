@@ -1,23 +1,23 @@
 from smile.common import Subroutine, Func, Wait, Loop, Label, UntilDone,\
                          KeyPress
 from smile.scale import scale as s
-from listgen import gen_blocks
-from instruct import Instructions
+from listgen import gen_stim
+from instruct import Instruct
 from trial import EncodeTrial, TestTrial
 
 
 @Subroutine
 def Obfuscation(self, config):
-    blocks = Func(gen_blocks, config).result
+    blocks = Func(gen_stim, config, ".").result
 
-    Instructions(config)
+    Instruct(config)
 
     Label(text="You have now finished the practice instructions.\n" +
                "Press any key to continue to the main experiment.",
           font_size=s(config.FONT_SIZE))
     with UntilDone():
         KeyPress()
-    
+
     Wait(config.ISI)
 
     with Loop(blocks) as block:
@@ -65,8 +65,12 @@ if __name__ == "__main__":
     config.TEST_REMINDER = config.TEST_REMINDER % (config.ON_KEYS[0], config.ON_KEYS[1],
                                                    config.KEYS[0], config.KEYS[1], config.KEYS[2], config.KEYS[3], config.KEYS[4], config.KEYS[5],
                                                    config.KEYS[0], config.KEYS[1], config.KEYS[5])
+    config.INST2 = config.INST2 % (config.ON_KEYS[0], config.ON_KEYS[1],
+                                   config.KEYS[0], config.KEYS[1], config.KEYS[2], config.KEYS[3], config.KEYS[4], config.KEYS[5],
+                                   config.KEYS[0], config.KEYS[1], config.KEYS[5])
 
-    exp = Experiment()
+    exp = Experiment(background_color=(.35, .35, .35, 1.0),
+                     name="obfuscate")
 
     InputSubject(name="Obfuscation")
 
