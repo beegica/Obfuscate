@@ -1,0 +1,3 @@
+[submodule "flanker"]
+	path = flanker
+	url = https://github.com/compmem/flanker

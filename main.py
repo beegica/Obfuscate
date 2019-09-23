@@ -1,9 +1,11 @@
 from smile.common import Subroutine, Func, Wait, Loop, Label, UntilDone,\
-                         KeyPress
+                         KeyPress, Parallel
 from smile.scale import scale as s
 from listgen import gen_stim
 from instruct import Instruct
 from trial import EncodeTrial, TestTrial
+from flanker import config as Flanker_config
+from flanker import FlankerExp
 
 
 @Subroutine
@@ -40,9 +42,20 @@ def Obfuscation(self, config):
         with Loop(block.current[0]) as encode_trial:
             EncodeTrial(config, trial_dict=encode_trial.current)
 
-        # Insert something 90 seconds long here
+        Label(text="You are now about to do a different task before being tested.\n\nPress any key to continue.",
+              font_size=s(config.FONT_SIZE))
+        with UntilDone():
+            KeyPress()
 
-
+        with Parallel():
+            FlankerExp(Flanker_config,
+                       run_num=block.i,
+                       lang="E",
+                       pulse_server=None)
+            Label(text="Please wait, the rest of the experiment will begin shortly.",
+                  font_size=s(config.FONT_SIZE))
+        with UntilDone():
+            Wait(config.INTER_PART_WAIT)
 
         Label(text=config.TEST_REMINDER, multiline=True,
               font_size=s(config.INST_FONT_SIZE), )
@@ -54,7 +67,20 @@ def Obfuscation(self, config):
         with Loop(block.current[1]) as test_trial:
             TestTrial(config, trial_dict=test_trial.current)
 
-        # Insert something 90 seconds long here
+        Label(text="You are now about to do a different task before going onto the next block.\n\nPress any key to continue.",
+              font_size=s(config.FONT_SIZE))
+        with UntilDone():
+            KeyPress()
+
+        with Parallel():
+            FlankerExp(Flanker_config,
+                       run_num=block.i,
+                       lang="E",
+                       pulse_server=None)
+            Label(text="Please wait, the rest of the experiment will begin shortly.",
+                  font_size=s(config.FONT_SIZE))
+        with UntilDone():
+            Wait(config.INTER_PART_WAIT)
 
 
 if __name__ == "__main__":
