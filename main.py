@@ -91,7 +91,8 @@ if __name__ == "__main__":
     config.TEST_REMINDER = config.TEST_REMINDER % (config.ON_KEYS[0], config.ON_KEYS[1],
                                                    config.KEYS[0], config.KEYS[1], config.KEYS[2], config.KEYS[3], config.KEYS[4], config.KEYS[5],
                                                    config.KEYS[0], config.KEYS[1], config.KEYS[5])
-    config.INST2 = config.INST2 % (config.ON_KEYS[0], config.ON_KEYS[1],
+
+    config.INST4 = config.INST4 % (config.ON_KEYS[0], config.ON_KEYS[1],
                                    config.KEYS[0], config.KEYS[1], config.KEYS[2], config.KEYS[3], config.KEYS[4], config.KEYS[5],
                                    config.KEYS[0], config.KEYS[1], config.KEYS[5])
 

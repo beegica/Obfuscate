@@ -1,10 +1,11 @@
+# -*- coding: utf-8 -*-
 # All of the variables needed for the obfuscation experiment
 
 KEYS = ['S', 'D', 'F', 'J', 'K', 'L']
 ON_KEYS = KEYS[2:4]
 CONF_DICT = {k: str(20*i) for i, k in enumerate(KEYS)}
-STIM_HEIGHT = 300
-STIM_WIDTH = 200
+STIM_HEIGHT = 500
+STIM_WIDTH = 300
 
 STIM_ENCODE_DUR = 4.0
 OLDNEW_RESP_DUR = 3.0
@@ -23,18 +24,22 @@ RECE_TRIAL_LEN = 2
 PRIM_TRIAL_LEN = 2
 ENCODE_TRIAL_LEN = 18
 
-INST1 = "In this experiment, you will be viewing a series of faces and asked to remember them as best you can. After each block of viewing faces, you will be asked to view more faces, some different images of the same people and some brand new people, and asked to identify which people you have seen already.\n\nSome of these faces will have an obfuscation over them, and some of them will be clear.\n\nYou will now see an example of the encoding phase of the experiment. Try to remember the faces as best you can.\n\nPlease note that during the main experiment there will be a different task that you must complete between the study and test phases of each block. You will not have to complete that yet.\n\nPress any key to see an example study phase."
+INST1 = "In this experiment, you will be viewing pictures of faces. Please pay attention, as we will ask you to remember these people later in the experiment. Before beginning, we will do a practice version of the task.\n\nPress any key to see an example study phase"
 
-INST2 = "You will now see some images of new people, and some new faces of the people you saw before. For this practice task, please indicated first if you have seen the person in the previous block, and then provide a confidence rating for this choice."+\
-        "\n\nIf you want to indicate a Face is Old, Press %s." + \
-        "\n\nIf you want to indicate a Face is New, Press %s." + \
+INST2 = "You will now be tested on your memory of the faces you studied previously. Some images will be people you studied. Others will be completely new.\n\nPress any key to continue."
+
+INST3 = "Note that simple features of the faces, such as color or orientation, may be different from the images you saw before. You are asked to accurately remember the person that appeared on the screen during this session, rather than the specific image.\n\nPress any key to continue."
+
+INST4 = "You will now see some images of new people, and people you saw before. For this practice task, please indicate first if you have seen the person, and then provide a confidence rating for this choice."+\
+        "\n\nIf you want to indicate you have seen the Face, Press %s." + \
+        "\n\nIf you want to indicate that this is a new Face, Press %s." + \
         "\n\nThe keys for indicating confidence are %s, %s, %s, %s, %s, and %s. These keys are in order and increase in increments of 20." + \
         "\n\nPress %s for 0%% confidence, %s for 20%% confidence, and so on to %s for 100%% confidence. Your choices will be displayed on the screen in case there is any confusion." + \
         "\n\nWhen you are ready to the sample test phase, press any key!"
 
-ENCODE_REMINDER = "In the following section, you just need to view the faces that are being shown to you on the screen.\n\nPlease try to look at them for the full duration that they are on the screen.\n\nWhen you are ready press any key!"
+ENCODE_REMINDER = "In the following section, you just need to view the faces that are being shown to you on the screen.\n\nPlease pay attention to them for the full duration that they are on the screen.\n\nWhen you are ready press any key!"
 
-TEST_REMINDER = "In the following section, you will be shown faces and asked to judge if you have seen them before and your confidence in this choice. The faces wont look exactly the same, so do your best to identify if they are an old face from the previous section, or a brand new face you have never seen before." + \
+TEST_REMINDER = "In the following section, you will be shown faces and asked to judge if you have seen them before and your confidence in this choice. The faces won’t look exactly the same, so do your best to identify if they are a face you have seen previously, or a brand new face you have never seen before." + \
                  "\n\nIf you want to indicate a Face is Old, Press %s." + \
                  "\n\nIf you want to indicate a Face is New, Press %s." + \
                  "\n\nThe keys for indicating confidence are %s, %s, %s, %s, %s, and %s. These keys are in order and increase in increments of 20." + \

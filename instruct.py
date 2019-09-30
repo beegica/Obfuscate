@@ -1,3 +1,5 @@
+
+
 from smile.common import Subroutine, Func, Label, UntilDone, KeyPress, Wait, \
                          Loop
 from smile.scale import scale as s
@@ -59,6 +61,19 @@ def Instruct(self, config):
     with UntilDone():
         KeyPress()
     Wait(.5)
+
+    Label(text=config.INST3, font_size=s(config.INST_FONT_SIZE),
+          text_size=(s(1000), None))
+    with UntilDone():
+        KeyPress()
+    Wait(.5)
+
+    Label(text=config.INST4, font_size=s(config.INST_FONT_SIZE),
+          text_size=(s(1000), None))
+    with UntilDone():
+        KeyPress()
+    Wait(.5)
+
 
     with Loop(et.result[1]) as lp:
         TestTrial(config, lp.current)

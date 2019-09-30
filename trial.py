@@ -12,6 +12,8 @@ def EncodeTrial(self, config, trial_dict):
             Image(source=trial_dict['stim'],
                   height=s(config.STIM_HEIGHT),
                   width=s(config.STIM_WIDTH),
+                  allow_stretch=True,
+                  keep_ratio=True,
                   duration=config.STIM_ENCODE_DUR)
             Wait(config.ISI, jitter=config.ISI_JIT)
     Log(trial_dict,
@@ -24,7 +26,9 @@ def TestTrial(self, config, trial_dict):
 
     stim_img = Image(source=trial_dict['stim'],
                      height=s(config.STIM_HEIGHT),
-                     width=s(config.STIM_WIDTH))
+                     width=s(config.STIM_WIDTH),
+                     allow_stretch=True,
+                     keep_ratio=True)
     with UntilDone():
 
         Label(text="Old or New", font_size=s(config.FONT_SIZE),
@@ -37,17 +41,62 @@ def TestTrial(self, config, trial_dict):
                            base_time=stim_img.appear_time['time'])
 
         # Ask for confidence
-        conlbl = Label(text="Confidence?", font_size=s(config.FONT_SIZE),
-                       top=stim_img.bottom - s(10))
+        with Parallel():
+            conlbl = Label(text="Confidence?", font_size=s(config.FONT_SIZE),
+                           top=stim_img.bottom - s(10))
+            conunderlbl = Label(text="%s" % (config.KEYS[0]),
+                                top=conlbl.bottom - s(10),
+                                right=self.exp.screen.center_x - s(250),
+                                font_size=s(config.FONT_SIZE))
+            conunderlblb = Label(text="%s" % (config.KEYS[1]),
+                                top=conlbl.bottom - s(10),
+                                right=self.exp.screen.center_x - s(150),
+                                font_size=s(config.FONT_SIZE))
+            conunderlblc = Label(text="%s" % (config.KEYS[2]),
+                                top=conlbl.bottom - s(10),
+                                right=self.exp.screen.center_x - s(50),
+                                font_size=s(config.FONT_SIZE))
+            conunderlbld = Label(text="%s" % (config.KEYS[3]),
+                                top=conlbl.bottom - s(10),
+                                left=self.exp.screen.center_x + s(50),
+                                font_size=s(config.FONT_SIZE))
+            conunderlble = Label(text="%s" % (config.KEYS[4]),
+                                top=conlbl.bottom - s(10),
+                                left=self.exp.screen.center_x + s(150),
+                                font_size=s(config.FONT_SIZE))
+            conunderlblf = Label(text="%s" % (config.KEYS[5]),
+                                top=conlbl.bottom - s(10),
+                                left=self.exp.screen.center_x + s(250),
+                                font_size=s(config.FONT_SIZE))
+            Label(text="0%",
+                    top=conunderlbl.bottom - s(10),
+                    center_x=conunderlbl.center_x,
+                    font_size=s(config.FONT_SIZE))
+            Label(text="20%",
+                    top=conunderlbl.bottom - s(10),
+                    center_x=conunderlblb.center_x,
+                    font_size=s(config.FONT_SIZE))
+            Label(text="40%",
+                    top=conunderlbl.bottom - s(10),
+                    center_x=conunderlblc.center_x,
+                    font_size=s(config.FONT_SIZE))
+            Label(text="60%",
+                    top=conunderlbl.bottom - s(10),
+                    center_x=conunderlbld.center_x,
+                    font_size=s(config.FONT_SIZE))
+            Label(text="80%",
+                    top=conunderlbl.bottom - s(10),
+                    center_x=conunderlble.center_x,
+                    font_size=s(config.FONT_SIZE))
+            Label(text="100%",
+                    top=conunderlbl.bottom - s(10),
+                    center_x=conunderlblf.center_x,
+                    font_size=s(config.FONT_SIZE))
         with UntilDone():
 
             Wait(until=conlbl.appear_time)
             kp2 = KeyPress(keys=config.KEYS,
                            base_time=conlbl.appear_time['time'])
-            Label(text=Ref.getitem(config.CONF_DICT, kp2.pressed),
-                  top=conlbl.bottom,
-                  font_size=s(config.FONT_SIZE),
-                  duration=config.CONF_CHOICE_VIEW)
 
     Log(trial_dict,
         name="TEST",
