@@ -1,5 +1,5 @@
 from smile.common import Subroutine, Func, Wait, Loop, Label, UntilDone,\
-                         KeyPress, Parallel
+                         KeyPress, Parallel, Serial
 from smile.scale import scale as s
 from listgen import gen_stim
 from instruct import Instruct
@@ -47,7 +47,7 @@ def Obfuscation(self, config):
         with UntilDone():
             KeyPress()
 
-        with Parallel():
+        with Serial():
             FlankerExp(Flanker_config,
                        run_num=block.i,
                        lang="E",
@@ -68,11 +68,11 @@ def Obfuscation(self, config):
             TestTrial(config, trial_dict=test_trial.current)
 
         Label(text="You are now about to do a different task before going onto the next block.\n\nPress any key to continue.",
-              font_size=s(config.FONT_SIZE))
+              font_size=s(config.FONT_SIZE), text_size=(s(1000), None))
         with UntilDone():
             KeyPress()
 
-        with Parallel():
+        with Serial():
             FlankerExp(Flanker_config,
                        run_num=block.i,
                        lang="E",
@@ -95,7 +95,9 @@ if __name__ == "__main__":
     config.INST4 = config.INST4 % (config.ON_KEYS[0], config.ON_KEYS[1],
                                    config.KEYS[0], config.KEYS[1], config.KEYS[2], config.KEYS[3], config.KEYS[4], config.KEYS[5],
                                    config.KEYS[0], config.KEYS[1], config.KEYS[5])
-
+    Flanker_config.RESP_KEYS = config.ON_KEYS[:]
+    Flanker_config.CONT_KEY = config.ON_KEYS[:]
+    Flanker_config.TOUCH = False
     exp = Experiment(background_color=(.35, .35, .35, 1.0),
                      name="obfuscate")
 
