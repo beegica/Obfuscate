@@ -37,7 +37,7 @@ INST4 = "You will now see some images of new people, and people you saw before. 
         "\n\nPress %s for 0%% confidence, %s for 20%% confidence, and so on to %s for 100%% confidence. Your choices will be displayed on the screen in case there is any confusion." + \
         "\n\nWhen you are ready to the sample test phase, press any key!"
 
-ENCODE_REMINDER = "In the following section, you just need to view the faces that are being shown to you on the screen.\n\nPlease pay attention to them for the full duration that they are on the screen.\n\nWhen you are ready press any key!"
+ENCODE_REMINDER = "You will now be shown pictures of real faces.\n\nPlease pay attention, as we will ask you to remember these people later in the experiment.\n\nWhen you are ready press any key!"
 
 TEST_REMINDER = "In the following section, you will be shown faces and asked to judge if you have seen them before and your confidence in this choice. The faces won’t look exactly the same, so do your best to identify if they are a face you have seen previously, or a brand new face you have never seen before." + \
                  "\n\nIf you want to indicate a Face is Seen, Press %s." + \

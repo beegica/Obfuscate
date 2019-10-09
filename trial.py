@@ -31,7 +31,7 @@ def TestTrial(self, config, trial_dict):
                      keep_ratio=True)
     with UntilDone():
 
-        Label(text="Seen or New\n\n%s or %s" % (config.ON_KEYS), font_size=s(config.FONT_SIZE),
+        Label(text="Seen or New\n\n%s or %s" % (config.ON_KEYS[0], config.ON_KEYS[1]), font_size=s(config.FONT_SIZE),
                        top=stim_img.bottom - s(10), halign='center')
         with UntilDone():
 

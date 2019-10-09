@@ -1,5 +1,5 @@
 from smile.common import Subroutine, Func, Wait, Loop, Label, UntilDone,\
-                         KeyPress, Parallel, Serial
+                         KeyPress, Parallel, Serial, If
 from smile.scale import scale as s
 from listgen import gen_stim
 from instruct import Instruct
@@ -33,7 +33,7 @@ def Obfuscation(self, config):
         Wait(.3)
 
         Label(text=config.ENCODE_REMINDER, multiline=True,
-              font_size=s(config.INST_FONT_SIZE), , text_size=(s(1000), None))
+              font_size=s(config.INST_FONT_SIZE), text_size=(s(1000), None))
         with UntilDone():
             KeyPress()
 
