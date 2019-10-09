@@ -15,7 +15,7 @@ def Obfuscation(self, config):
     Instruct(config)
 
     Label(text="You have now finished the practice instructions.\n" +
-               "Press any key to continue to the main experiment.",
+               "Press any key to continue to the experiment.",
           font_size=s(config.FONT_SIZE))
     with UntilDone():
         KeyPress()
@@ -33,7 +33,7 @@ def Obfuscation(self, config):
         Wait(.3)
 
         Label(text=config.ENCODE_REMINDER, multiline=True,
-              font_size=s(config.INST_FONT_SIZE), )
+              font_size=s(config.INST_FONT_SIZE), , text_size=(s(1000), None))
         with UntilDone():
             KeyPress()
 
@@ -42,7 +42,7 @@ def Obfuscation(self, config):
         with Loop(block.current[0]) as encode_trial:
             EncodeTrial(config, trial_dict=encode_trial.current)
 
-        Label(text="You are now about to do a different task before being tested.\n\nPress any key to continue.",
+        Label(text="You are now about to do a different task.\n\nPress any key to continue.",
               font_size=s(config.FONT_SIZE))
         with UntilDone():
             KeyPress()
@@ -58,7 +58,7 @@ def Obfuscation(self, config):
             Wait(config.INTER_PART_WAIT)
 
         Label(text=config.TEST_REMINDER, multiline=True,
-              font_size=s(config.INST_FONT_SIZE), )
+              font_size=s(config.INST_FONT_SIZE), text_size=(s(1000), None))
         with UntilDone():
             KeyPress()
 
@@ -67,20 +67,20 @@ def Obfuscation(self, config):
         with Loop(block.current[1]) as test_trial:
             TestTrial(config, trial_dict=test_trial.current)
 
-        Label(text="You are now about to do a different task before going onto the next block.\n\nPress any key to continue.",
+        Label(text="You are now about to do a different task.\n\nPress any key to continue.",
               font_size=s(config.FONT_SIZE), text_size=(s(1000), None))
         with UntilDone():
             KeyPress()
-
-        with Serial():
-            FlankerExp(Flanker_config,
-                       run_num=block.i,
-                       lang="E",
-                       pulse_server=None)
-            Label(text="Please wait, the rest of the experiment will begin shortly.",
-                  font_size=s(config.FONT_SIZE))
-        with UntilDone():
-            Wait(config.INTER_PART_WAIT)
+	with If(block.i < 1):
+            with Serial():
+                FlankerExp(Flanker_config,
+                           run_num=block.i,
+                           lang="E",
+                           pulse_server=None)
+                Label(text="Please wait, the rest of the experiment will begin shortly.",
+                      font_size=s(config.FONT_SIZE))
+            with UntilDone():
+                Wait(config.INTER_PART_WAIT)
 
 
 if __name__ == "__main__":

@@ -32,6 +32,8 @@ def gen_stim(config, task_dir):
     blocks = []
     for block in config.BLOCKS:
         encode = []
+        pri = []
+        rec = []
         test = []
         # Create Primacy Trials
         for p in range(config.PRIM_TRIAL_LEN):
@@ -43,7 +45,7 @@ def gen_stim(config, task_dir):
                 te['stim'] = trial[1]
             te['cond'] = block
             te['trial_type'] = "PRIMACY"
-            encode.append(te.copy())
+            pri.append(te.copy())
 
         # Create Encoding Trials
         for c in range(config.ENCODE_TRIAL_LEN):
@@ -86,8 +88,9 @@ def gen_stim(config, task_dir):
                 te['stim'] = trial[1]
             te['cond'] = block
             te['trial_type'] = "RECENCY"
-            encode.append(te.copy())
+            rec.append(te.copy())
         random.shuffle(encode)
+        encode = pri + encode + rec
         random.shuffle(test)
         blocks.append([encode, test])
     return blocks
